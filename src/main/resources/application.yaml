@@ -1,0 +1,34 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    org.springframework.security: trace
+spring:
+  datasource:
+    url: jdbc:h2:mem:auth
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+#    url: jdbc:postgresql://localhost:5432/auth
+#    username: postgres
+#    password: Default123
+#    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+app:
+  keys:
+    algorithm: "RSA"
+    private-key: "keys/private_key.der"
+    public-key: "keys/public_key.der"
+  oauth2:
+    base-url-authorization-server: "http://localhost:8081"
+    registered-client-id: "389ffd6f-3b42-432e-8dbe-1abd3d1553d1"
+    client-id: "dans-client"
+    client-secret: "dans-secret"
+    client-secret-algorithm: "{noop}"
+    scopes:
+      - "positions:read"
